@@ -1,5 +1,6 @@
 package com.example.liudmula.photographer;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,8 +9,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoadImageTask.Listener{
+
+    private ImageView mImageView;
+    private static final String SIMPLE_IMAGE_URL = "https://images.unsplash.com/photo-1452457807411-4979b707c5be?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=400&fit=max";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mImageView = (ImageView) findViewById(R.id.iv_photo);
+
+        //execute LoadImageTask
+        new LoadImageTask(this).execute(SIMPLE_IMAGE_URL);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -48,5 +59,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onImageLoaded(Bitmap bitmap) {
+        mImageView.setImageBitmap(bitmap);
+    }
+
+    @Override
+    public void onError() {
+        Toast.makeText(this, "Error Loading image", Toast.LENGTH_LONG).show();
     }
 }
