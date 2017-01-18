@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
@@ -12,9 +14,15 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements LoadImageTask.Listener{
 
     private ImageView mImageView;
+    private Bitmap mBitmapTest;
+    private RecyclerView mRecyclerView;
+    private ImageAdapter mImageAdapter;
+
     private static final String SIMPLE_IMAGE_URL = "https://images.unsplash.com/photo-1452457807411-4979b707c5be?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=400&fit=max";
 
     @Override
@@ -24,10 +32,10 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mImageView = (ImageView) findViewById(R.id.iv_photo);
 
-        //execute LoadImageTask
         new LoadImageTask(this).execute(SIMPLE_IMAGE_URL);
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +71,25 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
     @Override
     public void onImageLoaded(Bitmap bitmap) {
-        mImageView.setImageBitmap(bitmap);
+        //mImageView.setImageBitmap(bitmap);
+        mBitmapTest = bitmap;
+        mImageView = (ImageView) findViewById(R.id.iv_card_row);
+
+        ArrayList<Photo> photos = new ArrayList<>();
+
+        photos.add(new Photo("username1", mBitmapTest));
+        photos.add(new Photo("username2", mBitmapTest));
+        photos.add(new Photo("username3", mBitmapTest));
+        photos.add(new Photo("username4", mBitmapTest));
+        photos.add(new Photo("username5", mBitmapTest));
+
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        mRecyclerView.setLayoutManager(layoutManager);
+        mImageAdapter = new ImageAdapter(photos);
+        mRecyclerView.setAdapter(mImageAdapter);
+
     }
 
     @Override

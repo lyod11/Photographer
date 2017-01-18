@@ -14,6 +14,12 @@ public class Photo {
     private String profile_image;
     private String[] urls;
     private Bitmap[] imageBitmaps;
+    private Bitmap testBitmap;
+
+    public Photo(String username, Bitmap bitmap){
+        this.username = username;
+        this.testBitmap = bitmap;
+    }
 
     public String getId() {
         return id;
@@ -69,5 +75,13 @@ public class Photo {
 
     public void setImageBitmaps(Bitmap[] imageBitmaps) {
         this.imageBitmaps = imageBitmaps;
+    }
+
+    public Bitmap getTestBitmap() {
+        return testBitmap;
+    }
+
+    public void setTestBitmap(Bitmap testBitmap) {
+        this.testBitmap = testBitmap;
     }
 }
