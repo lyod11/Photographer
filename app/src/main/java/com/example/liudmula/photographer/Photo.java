@@ -8,18 +8,19 @@ import android.graphics.Bitmap;
 
 public class Photo {
     private String id;
-    private String likes;
+    private int likes;
     private boolean liked_by_user;
     private String username;
-    private String profile_image;
-    private String[] urls;
+    private Bitmap profileImage;
+    private String profileImageUrl;
+    private String[] imageUrls;
     private Bitmap[] imageBitmaps;
-    private Bitmap testBitmap;
 
     public Photo(String username, Bitmap bitmap){
         this.username = username;
-        this.testBitmap = bitmap;
     }
+
+    public Photo() {}
 
     public String getId() {
         return id;
@@ -29,11 +30,11 @@ public class Photo {
         this.id = id;
     }
 
-    public String getLikes() {
+    public int getLikes() {
         return likes;
     }
 
-    public void setLikes(String likes) {
+    public void setLikes(int likes) {
         this.likes = likes;
     }
 
@@ -53,20 +54,13 @@ public class Photo {
         this.username = username;
     }
 
-    public String getProfile_image() {
-        return profile_image;
-    }
-
-    public void setProfile_image(String profile_image) {
-        this.profile_image = profile_image;
-    }
 
     public String[] getUrls() {
-        return urls;
+        return imageUrls;
     }
 
     public void setUrls(String[] urls) {
-        this.urls = urls;
+        this.imageUrls = urls;
     }
 
     public Bitmap[] getImageBitmaps() {
@@ -77,11 +71,20 @@ public class Photo {
         this.imageBitmaps = imageBitmaps;
     }
 
-    public Bitmap getTestBitmap() {
-        return testBitmap;
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
     }
 
-    public void setTestBitmap(Bitmap testBitmap) {
-        this.testBitmap = testBitmap;
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
+
+    public Bitmap getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(Bitmap profileImage) {
+        this.profileImage = profileImage;
     }
 }
