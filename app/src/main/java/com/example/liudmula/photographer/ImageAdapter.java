@@ -30,7 +30,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ImageAdapter.ViewHolder holder, int pos) {
-        //holder.mIvRow.setImageBitmap(mPhotos.get(pos).getTestBitmap());
+        holder.mIvRow.setImageBitmap(mPhotos.get(pos).getImageBitmapSmall());
         holder.mTvRow.setText(mPhotos.get(pos).getUsername());
     }
 

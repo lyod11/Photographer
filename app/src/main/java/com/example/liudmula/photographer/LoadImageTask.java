@@ -47,10 +47,8 @@ public class LoadImageTask extends AsyncTask<List<Photo>, Void, List<Photo>> {
             } catch (IOException e) {
                 Log.e(LOG_TAG, "Problem with stream decoding", e);
             }
-            return photos;
-
         }
-        return null;
+        return photos;
     }
 
     @Override
