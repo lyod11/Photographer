@@ -106,46 +106,39 @@ public class NetUtils {
     }
 
     private static ArrayList<Photo> extractListPhotos(String jsonResponse) {
-
         ArrayList<Photo> photos = new ArrayList<>();
         JSONArray baseJsonArray = null;
 
         try {
             baseJsonArray = new JSONArray(jsonResponse);
             for(int i=0; i<baseJsonArray.length()-1; i++) {
-                JSONObject currentArrayItem = baseJsonArray.getJSONObject(i);
-                JSONArray userCollection = currentArrayItem.getJSONArray("current_user_collections");
+                JSONObject currImage = baseJsonArray.getJSONObject(i);
 
-                for (int j = 0; i < userCollection.length() - 1; i++) {
-                    Photo photo = new Photo();
-                    JSONObject currImage = userCollection.getJSONObject(j);
+                Photo photo = new Photo();
 
-                    JSONObject coverPhoto = currImage.getJSONObject("cover_photo");
+                String id = currImage.getString("id");
+                photo.setId(id);
+                int likes = currImage.getInt("likes");
+                photo.setLikes(likes);
+                boolean liked_by_user = currImage.getBoolean("liked_by_user");
+                photo.setLiked_by_user(liked_by_user);
 
-                    String id = coverPhoto.getString("id");
-                    photo.setId(id);
-                    int likes = coverPhoto.getInt("likes");
-                    photo.setLikes(likes);
-                    boolean liked_by_user = coverPhoto.getBoolean("liked_by_user");
-                    photo.setLiked_by_user(liked_by_user);
+                JSONObject user = currImage.getJSONObject("user");
+                String username = user.getString("username");
+                photo.setUsername(username);
+                JSONObject profileImage = user.getJSONObject("profile_image");
+                String profileImageUrl = profileImage.getString("small");
+                photo.setProfileImageUrl(profileImageUrl);
 
-                    JSONObject user = coverPhoto.getJSONObject("user");
-                    String username = user.getString("username");
-                    photo.setUsername(username);
+                JSONObject imageUrls = currImage.getJSONObject("urls");
+                String[] urls = new String[2];
+                urls[0] = imageUrls.getString("small");
+                urls[1] = imageUrls.getString("full");
+                photo.setUrls(urls);
 
-                    JSONObject profileImage = user.getJSONObject("profile_image");
-                    String profileImageUrl = profileImage.getString("small");
-                    photo.setProfileImageUrl(profileImageUrl);
-
-                    JSONObject imageUrls = coverPhoto.getJSONObject("urls");
-                    String[] urls = null;
-                    urls[0] = imageUrls.getString("small");
-                    urls[1] = imageUrls.getString("full");
-                    photo.setUrls(urls);
-
-                    photos.add(photo);
-                }
+                photos.add(photo);
             }
+
 
         } catch (JSONException e) {
             Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
