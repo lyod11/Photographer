@@ -13,8 +13,8 @@ public class Photo {
     private String username;
     private Bitmap profileImage;
     private String profileImageUrl;
-    private String[] imageUrls;
-    private Bitmap[] imageBitmaps;
+    private String imageUrlSmall;
+    private Bitmap imageBitmapSmall;
 
     public Photo(String username, Bitmap bitmap){
         this.username = username;
@@ -54,24 +54,6 @@ public class Photo {
         this.username = username;
     }
 
-
-    public String[] getUrls() {
-        return imageUrls;
-    }
-
-    public void setUrls(String[] urls) {
-        this.imageUrls = urls;
-    }
-
-    public Bitmap[] getImageBitmaps() {
-        return imageBitmaps;
-    }
-
-    public void setImageBitmaps(Bitmap[] imageBitmaps) {
-        this.imageBitmaps = imageBitmaps;
-    }
-
-
     public String getProfileImageUrl() {
         return profileImageUrl;
     }
@@ -86,5 +68,21 @@ public class Photo {
 
     public void setProfileImage(Bitmap profileImage) {
         this.profileImage = profileImage;
+    }
+
+    public String getImageUrlSmall() {
+        return imageUrlSmall;
+    }
+
+    public void setImageUrlSmall(String imageUrlSmall) {
+        this.imageUrlSmall = imageUrlSmall;
+    }
+
+    public Bitmap getImageBitmapSmall() {
+        return imageBitmapSmall;
+    }
+
+    public void setImageBitmapSmall(Bitmap imageBitmapSmall) {
+        this.imageBitmapSmall = imageBitmapSmall;
     }
 }

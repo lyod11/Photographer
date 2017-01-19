@@ -131,10 +131,9 @@ public class NetUtils {
                 photo.setProfileImageUrl(profileImageUrl);
 
                 JSONObject imageUrls = currImage.getJSONObject("urls");
-                String[] urls = new String[2];
-                urls[0] = imageUrls.getString("small");
-                urls[1] = imageUrls.getString("full");
-                photo.setUrls(urls);
+                String urlSmall = imageUrls.getString("small");
+                photo.setImageUrlSmall(urlSmall);
+
 
                 photos.add(photo);
             }
