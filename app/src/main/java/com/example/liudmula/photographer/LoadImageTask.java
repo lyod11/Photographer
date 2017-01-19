@@ -8,17 +8,18 @@ import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.List;
 
 /**
  * Created by liudmula on 18.01.17.
  */
 
-public class LoadImageTask extends AsyncTask<String, Void, Bitmap> {
+public class LoadImageTask extends AsyncTask<List<Photo>, Void, List<Photo>> {
 
     private static final String LOG_TAG = LoadImageTask.class.getSimpleName();
 
     public interface Listener{
-        void onImageLoaded(Bitmap bitmap);
+        void onImageLoaded(List<Photo> photos);
         void onError();
     }
 
@@ -31,19 +32,31 @@ public class LoadImageTask extends AsyncTask<String, Void, Bitmap> {
 
 
     @Override
-    protected Bitmap doInBackground(String... params) {
-        try {
-            return BitmapFactory.decodeStream((InputStream)new URL(params[0]).getContent());
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem with stream decoding", e);
+    protected List<Photo> doInBackground(List<Photo>... params) {
+
+        List<Photo> photos = params[0];
+
+        for(int i=0; i<photos.size(); i++){
+            Bitmap bitmap;
+            try {
+                bitmap = BitmapFactory.decodeStream((InputStream) new URL(photos.get(i).getProfileImageUrl()).getContent());
+                photos.get(i).setProfileImage(bitmap);
+
+                bitmap = BitmapFactory.decodeStream((InputStream) new URL(photos.get(i).getImageUrlSmall()).getContent());
+                photos.get(i).setImageBitmapSmall(bitmap);
+            } catch (IOException e) {
+                Log.e(LOG_TAG, "Problem with stream decoding", e);
+            }
+            return photos;
+
         }
         return null;
     }
 
     @Override
-    protected void onPostExecute(Bitmap bitmap) {
-        if(bitmap != null) {
-            mListener.onImageLoaded(bitmap);
+    protected void onPostExecute(List<Photo> photos) {
+        if(photos.get(0).getImageBitmapSmall() != null) {
+            mListener.onImageLoaded(photos);
         } else {
             mListener.onError();
         }
