@@ -1,6 +1,6 @@
 package com.example.liudmula.photographer;
 
-import android.graphics.Bitmap;
+
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -24,6 +24,9 @@ import java.util.List;
 
 public class NetUtils {
     private static final String LOG_TAG = NetUtils.class.getSimpleName();
+    private static final String UNSPLASH_URL = "https://unsplash.com/";
+    private static final String APPLICATION_ID = "7d700121bb4d745cb38d5a47ec3935a816df74be074a50c35b6a73b61dee0421";
+
 
     private NetUtils() {
     }
@@ -143,6 +146,15 @@ public class NetUtils {
             Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
         }
         return photos;
+    }
+
+
+    public static String getLoginUrl() {
+        return UNSPLASH_URL + "oauth/authorize"
+                + "?client_id=" + APPLICATION_ID
+                + "&redirect_uri=" + "photographer://auth.callback"
+                + "&response_type=" + "code"
+                + "&scope=" + "public+write_likes";
     }
 
 }

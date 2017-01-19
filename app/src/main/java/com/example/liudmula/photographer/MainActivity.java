@@ -1,5 +1,6 @@
 package com.example.liudmula.photographer;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,20 +26,26 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoadImageTask.Listener, NetworkRequestTask.RequestListener {
 
+
+
     private ImageView mImageView;
     private RecyclerView mRecyclerView;
     private ImageAdapter mImageAdapter;
     private List<Photo> mPhotos = new ArrayList<>();
 
 
+
     private static final String LIST_PHOTOS_URL = "https://api.unsplash.com/photos/?client_id=40a70581b73ac9754c7e45d1312acf3c176f59c638863ee599c448d649dc85d3";
 
+    private static final int REQUEST_CODE = 10001;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         new NetworkRequestTask(this).execute(LIST_PHOTOS_URL);
 
@@ -52,11 +59,21 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                Uri uri = Uri.parse(NetUtils.getLoginUrl());
+                startActivityForResult(new Intent(Intent.ACTION_VIEW, uri), REQUEST_CODE);
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE){
+
+        }
     }
 
     @Override
@@ -104,5 +121,13 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
     @Override
     public void onRequestError() {
         Toast.makeText(this, "Request error", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        intent.getData();
+
+
     }
 }
