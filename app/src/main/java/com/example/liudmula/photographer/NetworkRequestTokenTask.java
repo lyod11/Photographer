@@ -2,6 +2,8 @@ package com.example.liudmula.photographer;
 
 import android.os.AsyncTask;
 
+import com.example.liudmula.photographer.models.AuthToken;
+
 /**
  * Created by liudmula on 20.01.17.
  */

@@ -1,12 +1,9 @@
 package com.example.liudmula.photographer;
 
-import android.accounts.NetworkErrorException;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,16 +14,17 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.example.liudmula.photographer.models.AuthToken;
+import com.example.liudmula.photographer.services.AuthService;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity implements LoadImageTask.Listener,
-        NetworkRequestTask.RequestListener, NetworkRequestTokenTask.RequestTokenListener {
+        NetworkRequestTask.RequestListener, AuthService.OnRequestTokenListener {
 
 
 
@@ -34,12 +32,14 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
     private RecyclerView mRecyclerView;
     private ImageAdapter mImageAdapter;
     private List<Photo> mPhotos = new ArrayList<>();
-    private AuthToken mAuthToken;
+    private AuthService mService;
+    private String access_token;
 
 
 
     private static final String LIST_PHOTOS_URL = "https://api.unsplash.com/photos/?client_id=40a70581b73ac9754c7e45d1312acf3c176f59c638863ee599c448d649dc85d3";
     private static final String TOKEN_REQUEST_URL = "https://unsplash.com/oauth/token";
+    public static final String BASE_URL = "https://unsplash.com/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,24 +49,17 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
 
         // new NetworkRequestTask(this).execute(LIST_PHOTOS_URL);
-
+        mService = AuthService.getService();
         mImageView = (ImageView) findViewById(R.id.iv_card_row);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(layoutManager);
 
-        /*
-        При натисненні на FloatingActionButton викликає інтент і перенаправляє
-        на сторінку авторизації ансплешу
-        Перенарпавляє назад в майн актівіті. Інтент ловлю методом onNewIntent(внизу)
-         */
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
                 Uri uri = Uri.parse(NetUtils.getLoginUrl());
                 startActivity(new Intent(Intent.ACTION_VIEW, uri));
             }
@@ -128,26 +121,24 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
         Uri data = intent.getData();
         if(data != null){
 
-            /*
-            витягую код з інтенту
-             */
             String code = data.getQueryParameter("code");
-            /*викликаю новий асинктаск для нетворкреквесту
-            далі всі функції в NetUtils
-            */
-            new NetworkRequestTokenTask(this).execute(TOKEN_REQUEST_URL, code);
+            mService.requestAccessToken(code, this);
+//            new NetworkRequestTokenTask(this).execute(TOKEN_REQUEST_URL, code);
 
         }
 
     }
 
+
     @Override
-    public void onRequestTokenSuccessful(AuthToken token) {
-        mAuthToken = token;
+    public void onRequestTokenSuccessful(Call<AuthToken> call, Response<AuthToken> response) {
+        if(response.isSuccessful()){
+            access_token = response.body().getAccess_token();
+        }
     }
 
     @Override
-    public void onRequestTokenError() {
+    public void onRequestTokenError(Call<AuthToken> call) {
 
     }
 }
