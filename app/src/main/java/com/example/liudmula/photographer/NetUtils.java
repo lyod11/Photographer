@@ -1,6 +1,7 @@
 package com.example.liudmula.photographer;
 
 
+import android.net.Uri;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -8,9 +9,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -26,7 +30,7 @@ public class NetUtils {
     private static final String LOG_TAG = NetUtils.class.getSimpleName();
     private static final String UNSPLASH_URL = "https://unsplash.com/";
     private static final String APPLICATION_ID = "7d700121bb4d745cb38d5a47ec3935a816df74be074a50c35b6a73b61dee0421";
-
+    private static final String SECRET_ID = "838583c96cf08b9d12acb15e6f65c05f6cea78407390599e8c8e62403a10b832";
 
     private NetUtils() {
     }
@@ -37,13 +41,28 @@ public class NetUtils {
         String jsonResponse = null;
 
         try {
-            jsonResponse = makeHttpRequest(url);
+            jsonResponse = makeHttpRequest(url); //GET
         } catch (IOException e) {
             Log.e(LOG_TAG, "Problem making http request", e);
         }
 
         ArrayList<Photo> photos = extractListPhotos(jsonResponse);
         return photos;
+    }
+
+    public static AuthToken getToken(String requestedUrl, String code){
+        URL url = createUrl(requestedUrl);
+        String jsonResponse = null;
+        String params = NetUtils.getEncodedParamTokenQuery(code);
+        try {
+            jsonResponse = makeHttpPostRequest(url, params); // POST
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "Problem making http request", e);
+        }
+
+        AuthToken token = extractTokenInfo(jsonResponse);
+        return token;
+
     }
 
     private static URL createUrl(String stringUrl){
@@ -70,8 +89,11 @@ public class NetUtils {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setReadTimeout(10000);  //milliseconds
             urlConnection.setConnectTimeout(15000);
-            urlConnection.setRequestMethod("GET"); //??? maybe should be TRANSLATE?
+
+             //GET/POST
+            urlConnection.setRequestMethod("GET");
             urlConnection.connect();
+
 
             if (urlConnection.getResponseCode() == 200){
                 inputStream  = urlConnection.getInputStream();
@@ -79,6 +101,59 @@ public class NetUtils {
             }else{
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
+
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "Problem retrieving JSON results", e);
+        } finally {
+            if(urlConnection != null){
+                urlConnection.disconnect();
+            }
+            if(inputStream != null){
+                inputStream.close();
+            }
+        }
+
+        return jsonResponse;
+    }
+
+
+    private static String makeHttpPostRequest(URL url, String params) throws IOException {
+        String jsonResponse = "";
+
+        if (url == null){
+            return null;
+        }
+
+        HttpURLConnection urlConnection = null;
+        InputStream inputStream = null;
+
+        try {
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setReadTimeout(10000);  //milliseconds
+            urlConnection.setConnectTimeout(15000);
+
+
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setDoInput(true);
+            urlConnection.setDoOutput(true);
+
+            OutputStream outputStream = urlConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(
+                    new OutputStreamWriter(outputStream, "UTF-8"));
+            bufferedWriter.write(params);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+
+            urlConnection.connect();
+
+
+            //if (urlConnection.getResponseCode() == 200){
+                inputStream  = urlConnection.getInputStream();
+                jsonResponse = readFromStream(inputStream);
+//            }else{
+//                Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
+//            }
 
         } catch (IOException e) {
             Log.e(LOG_TAG, "Problem retrieving JSON results", e);
@@ -148,6 +223,28 @@ public class NetUtils {
         return photos;
     }
 
+    private static AuthToken extractTokenInfo(String jsoneResponce){
+        AuthToken token = new AuthToken();
+        JSONObject baseJsonObject = null;
+        try {
+
+            baseJsonObject = new JSONObject(jsoneResponce);
+            String string = baseJsonObject.getString("access_token");
+            token.setAccessToken(string);
+            string = baseJsonObject.getString("token_type");
+            token.setTokenType(string);
+            string = baseJsonObject.getString("scope");
+            token.setScope(string);
+            int created = baseJsonObject.getInt("created_at");
+            token.setCreatedAt(created);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return token;
+
+    }
+
 
     public static String getLoginUrl() {
         return UNSPLASH_URL + "oauth/authorize"
@@ -155,6 +252,17 @@ public class NetUtils {
                 + "&redirect_uri=" + "photographer://auth.callback"
                 + "&response_type=" + "code"
                 + "&scope=" + "public+write_likes";
+    }
+
+
+    public static String getEncodedParamTokenQuery(String code){
+        Uri.Builder builder = new Uri.Builder()
+                .appendQueryParameter("client_id", APPLICATION_ID)
+                .appendQueryParameter("client_secret", SECRET_ID)
+                .appendQueryParameter("redirect_uri", "photographer://auth.callback")
+                .appendQueryParameter("code", code)
+                .appendQueryParameter("grant_type", "authorization_code");
+        return builder.build().getEncodedQuery();
     }
 
 }
