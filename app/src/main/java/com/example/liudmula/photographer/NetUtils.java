@@ -132,10 +132,13 @@ public class NetUtils {
             urlConnection.setReadTimeout(10000);  //milliseconds
             urlConnection.setConnectTimeout(15000);
 
-
-            urlConnection.setRequestMethod("POST");
             urlConnection.setDoInput(true);
             urlConnection.setDoOutput(true);
+
+            urlConnection.setRequestMethod("POST");
+
+
+
 
             OutputStream outputStream = urlConnection.getOutputStream();
             BufferedWriter bufferedWriter = new BufferedWriter(
@@ -144,6 +147,8 @@ public class NetUtils {
             bufferedWriter.flush();
             bufferedWriter.close();
             outputStream.close();
+
+
 
             urlConnection.connect();
 

@@ -1,5 +1,6 @@
 package com.example.liudmula.photographer;
 
+import android.accounts.NetworkErrorException;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -24,7 +25,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LoadImageTask.Listener, NetworkRequestTask.RequestListener {
+public class MainActivity extends AppCompatActivity implements LoadImageTask.Listener,
+        NetworkRequestTask.RequestListener, NetworkRequestTokenTask.RequestTokenListener {
 
 
 
@@ -32,12 +34,12 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
     private RecyclerView mRecyclerView;
     private ImageAdapter mImageAdapter;
     private List<Photo> mPhotos = new ArrayList<>();
+    private AuthToken mAuthToken;
 
 
 
     private static final String LIST_PHOTOS_URL = "https://api.unsplash.com/photos/?client_id=40a70581b73ac9754c7e45d1312acf3c176f59c638863ee599c448d649dc85d3";
-
-    private static final int REQUEST_CODE = 10001;
+    private static final String TOKEN_REQUEST_URL = "https://unsplash.com/oauth/token";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +48,8 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
         setSupportActionBar(toolbar);
 
 
-
-        new NetworkRequestTask(this).execute(LIST_PHOTOS_URL);
+        //new NetworkRequestTokenTask(this).execute("https://api.twitter.com/oauth2/token", "3434");
+       // new NetworkRequestTask(this).execute(LIST_PHOTOS_URL);
 
         mImageView = (ImageView) findViewById(R.id.iv_card_row);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -62,19 +64,12 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
                 Uri uri = Uri.parse(NetUtils.getLoginUrl());
-                startActivityForResult(new Intent(Intent.ACTION_VIEW, uri), REQUEST_CODE);
+                startActivity(new Intent(Intent.ACTION_VIEW, uri));
             }
         });
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE){
-
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -126,8 +121,23 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        intent.getData();
+        Uri data = intent.getData();
+        if(data != null){
+           // List<String> params = data.get
+            String code = data.getQueryParameter("code");
+            new NetworkRequestTokenTask(this).execute(TOKEN_REQUEST_URL, code);
 
+        }
+
+    }
+
+    @Override
+    public void onRequestTokenSuccessful(AuthToken token) {
+        mAuthToken = token;
+    }
+
+    @Override
+    public void onRequestTokenError() {
 
     }
 }
