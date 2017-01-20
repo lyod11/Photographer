@@ -35,6 +35,7 @@ public class NetUtils {
     private NetUtils() {
     }
 
+    //то для GET, працює добре
     public static List<Photo> fetchPhotoList(String requestedUrl){
         URL url = createUrl(requestedUrl);
 
@@ -50,11 +51,20 @@ public class NetUtils {
         return photos;
     }
 
+
+    //От що не працює
     public static AuthToken getToken(String requestedUrl, String code){
+
+        //створюю юрл по заданому стрінгу
         URL url = createUrl(requestedUrl);
         String jsonResponse = null;
+        /*
+        getEncodedParamTokenQuery - просто формує параметри реквесту вже з кодом(внизу функція)
+         */
+
         String params = NetUtils.getEncodedParamTokenQuery(code);
         try {
+            //реквест. отут помилка
             jsonResponse = makeHttpPostRequest(url, params); // POST
         } catch (IOException e) {
             Log.e(LOG_TAG, "Problem making http request", e);
@@ -75,6 +85,7 @@ public class NetUtils {
         return url;
     }
 
+    //то для гет
     private static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
 
@@ -117,6 +128,7 @@ public class NetUtils {
     }
 
 
+    //пост реквест
     private static String makeHttpPostRequest(URL url, String params) throws IOException {
         String jsonResponse = "";
 
@@ -128,18 +140,19 @@ public class NetUtils {
         InputStream inputStream = null;
 
         try {
+            //коли відкриваю конекшн - помилка 404
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setReadTimeout(10000);  //milliseconds
             urlConnection.setConnectTimeout(15000);
 
-            urlConnection.setDoInput(true);
-            urlConnection.setDoOutput(true);
+
 
             urlConnection.setRequestMethod("POST");
 
+            urlConnection.setDoInput(true);
+            urlConnection.setDoOutput(true);
 
-
-
+            //це для задання параметрів(стек оверфлоу драйвен девелопмент)
             OutputStream outputStream = urlConnection.getOutputStream();
             BufferedWriter bufferedWriter = new BufferedWriter(
                     new OutputStreamWriter(outputStream, "UTF-8"));
@@ -149,7 +162,7 @@ public class NetUtils {
             outputStream.close();
 
 
-
+            //конект
             urlConnection.connect();
 
 

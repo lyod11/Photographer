@@ -48,14 +48,18 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
         setSupportActionBar(toolbar);
 
 
-        //new NetworkRequestTokenTask(this).execute("https://api.twitter.com/oauth2/token", "3434");
-       // new NetworkRequestTask(this).execute(LIST_PHOTOS_URL);
+        // new NetworkRequestTask(this).execute(LIST_PHOTOS_URL);
 
         mImageView = (ImageView) findViewById(R.id.iv_card_row);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(layoutManager);
 
+        /*
+        При натисненні на FloatingActionButton викликає інтент і перенаправляє
+        на сторінку авторизації ансплешу
+        Перенарпавляє назад в майн актівіті. Інтент ловлю методом onNewIntent(внизу)
+         */
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -123,8 +127,14 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
         super.onNewIntent(intent);
         Uri data = intent.getData();
         if(data != null){
-           // List<String> params = data.get
+
+            /*
+            витягую код з інтенту
+             */
             String code = data.getQueryParameter("code");
+            /*викликаю новий асинктаск для нетворкреквесту
+            далі всі функції в NetUtils
+            */
             new NetworkRequestTokenTask(this).execute(TOKEN_REQUEST_URL, code);
 
         }
