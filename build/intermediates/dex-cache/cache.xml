@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_2a8df85ea3aa8a973de0c23dc28c9d28a76c9378.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_fcea21c6716398512e1e7cee66bd46032b7214ef.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.1/b9d63507329a7178e026fc334f87587ee5070ac5/gson-2.6.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="b9d63507329a7178e026fc334f87587ee5070ac5">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/gson-2.6.1_c9fdc5cb1a342c61069d763adaec224effe261a2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/okhttp-3.2.0_134964193cfa7a2a381967238e6dd0ad299b54a5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/okio-1.6.0_827e6f377a0ede889d5efacf3487cb2b49c2c866.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.1_0591129dc0839074ddf5dcf774ae366286ca3845.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.0.2/f8d87f15b94b8d74e7ccf61d7eedb558811cdb30/converter-gson-2.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="f8d87f15b94b8d74e7ccf61d7eedb558811cdb30">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/converter-gson-2.0.2_b8afbef6288bf1920226978f5a8774eca4294f7b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-24.2.1_db206d338b2f480ec7281dcd94f3515ad8a3badd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-8.4.0_8643995e365b34363c6f2ae15dc5e74a28b031bb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.1_b7fa0eddd9b30b83e15b1a8022855f35151efb92.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/com.android.support-design-24.2.1_6bb7dcc4cd6570a1f366889064beb0a3dec66ca0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-8.4.0_1feea8ff7999f86cc85835ffc07e66acb0294ec0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.1_7a3375ac444c63705ab79cc8653e757637b38088.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.1_339058155310a9ede514b38d9fdfbeddfd0a7597.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.1_af750b7e07295589e91cbf895b1a82a21af89795.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-24.2.1_02e959e63faec4caaf09acc0457e82335cac870f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_4dcff0cfae0c9cfd38adede61951fcf7b656e8b3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-appindexing-8.4.0_52de8dcf60fe92234e571fdf82b7e841d461ebb3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_25bb0f7c290fb18ee42781c1987892146cf59f16.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.1_ece83d186c99ddad4c9e24fb911613a6d85507ae.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.1_ff0068de7542d376041003618ef2f517355ecd96.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.1_171459fde53f74d631e49782c4db017225ef31bd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.0.2/43eeae0b9fb087bb3194ba59ab63a38a32fbf3e/retrofit-2.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="043eeae0b9fb087bb3194ba59ab63a38a32fbf3e">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/retrofit-2.0.2_0357b34273699ad41c480882889d91940cfc2dcc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.1_8f58829cda33f0203e1763ab070f387ebc64d7ef.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_c789b23189393954dbfd1e191f833a9bd64fc415.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="/home/liudmula/AndroidStudioProjects/Photographer/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.1_1950b21c60b40011b53cbd7c20c9ab85e24141fc.jar" />
+    </item>
+
+</items>
