@@ -1,9 +1,5 @@
-package com.example.liudmula.photographer.services;
+package com.example.liudmula.photographer;
 
-import android.content.Context;
-
-import com.example.liudmula.photographer.MainActivity;
-import com.example.liudmula.photographer.NetUtils;
 import com.example.liudmula.photographer.interfaces.AuthenticationApi;
 import com.example.liudmula.photographer.models.AuthToken;
 

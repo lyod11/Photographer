@@ -1,9 +1,11 @@
-package com.example.liudmula.photographer;
+package com.example.liudmula.photographer.tasks;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.example.liudmula.photographer.models.Photo;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,7 +27,7 @@ public class LoadImageTask extends AsyncTask<List<Photo>, Void, List<Photo>> {
 
     private Listener mListener;
 
-    LoadImageTask(Listener listener){
+    public LoadImageTask(Listener listener){
         mListener = listener;
     }
 
@@ -39,8 +41,8 @@ public class LoadImageTask extends AsyncTask<List<Photo>, Void, List<Photo>> {
         for(int i=0; i<photos.size(); i++){
             Bitmap bitmap;
             try {
-                bitmap = BitmapFactory.decodeStream((InputStream) new URL(photos.get(i).getProfileImageUrl()).getContent());
-                photos.get(i).setProfileImage(bitmap);
+//                bitmap = BitmapFactory.decodeStream((InputStream) new URL(photos.get(i).getProfileImageUrl()).getContent());
+//                photos.get(i).setProfileImage(bitmap);
 
                 bitmap = BitmapFactory.decodeStream((InputStream) new URL(photos.get(i).getImageUrlSmall()).getContent());
                 photos.get(i).setImageBitmapSmall(bitmap);

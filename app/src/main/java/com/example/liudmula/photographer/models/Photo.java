@@ -1,4 +1,4 @@
-package com.example.liudmula.photographer;
+package com.example.liudmula.photographer.models;
 
 import android.graphics.Bitmap;
 
@@ -8,7 +8,7 @@ import android.graphics.Bitmap;
 
 public class Photo {
     private String id;
-    private int likes;
+    private Integer likes;
     private boolean liked_by_user;
     private String username;
     private Bitmap profileImage;
@@ -30,11 +30,11 @@ public class Photo {
         this.id = id;
     }
 
-    public int getLikes() {
+    public Integer getLikes() {
         return likes;
     }
 
-    public void setLikes(int likes) {
+    public void setLikes(Integer likes) {
         this.likes = likes;
     }
 

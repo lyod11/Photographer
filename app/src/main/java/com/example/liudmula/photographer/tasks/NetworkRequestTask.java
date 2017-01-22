@@ -1,7 +1,9 @@
-package com.example.liudmula.photographer;
+package com.example.liudmula.photographer.tasks;
 
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
+
+import com.example.liudmula.photographer.NetUtils;
+import com.example.liudmula.photographer.models.Photo;
 
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class NetworkRequestTask extends AsyncTask <String, Void, List<Photo>> {
 
     private RequestListener mListener;
 
-    NetworkRequestTask(RequestListener listener){
+    public NetworkRequestTask(RequestListener listener){
         mListener = listener;
     }
 
